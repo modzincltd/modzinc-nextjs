@@ -3,8 +3,10 @@
 import { link } from 'fs'
 import Image from 'next/image'
 import Link from 'next/link'
+import { SiRclone } from 'react-icons/si'
 
 const partners = [
+  { mame: 'Crosby Athetic', src: '/clients/crosby-athletic.jpg', link: 'https://www.crosbyathletic.club/' },
   { name: 'Client 1', src: '/clients/aa-fencing.png', link: 'https://www.aafencing.co.uk/' },
   { name: 'Client 2', src: '/clients/vant-glass.webp',  link: 'https://www.vant.glass/gb/' },
   { name: 'Client 3', src: '/clients/caz-logo.webp', link: 'https://www.cazskitchen.co.uk/' },
@@ -20,7 +22,7 @@ export default function PartnersCarousel() {
         {[...partners, ...partners].map((partner, index) => (
           <div
             key={index}
-            className="flex flex-col items-center text-gray-700 h-[100px] transition hover:opacity-80 hover:scale-105 duration-300 ease-in-out"
+            className="flex flex-col items-center text-gray-700 h-[60px] transition hover:opacity-80 hover:scale-105 duration-300 ease-in-out"
           >
             <Link href={partner.link} target="_blank" rel="noopener noreferrer">
             <Image
