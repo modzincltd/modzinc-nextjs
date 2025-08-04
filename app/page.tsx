@@ -77,6 +77,8 @@ export default function HomePage() {
 
       {/* CTA */}
       <section className="bg-gray-900 text-white py-20 text-center px-6">
+
+        
         <h2 className="text-3xl font-bold">Ready to Build Something Smart?</h2>
         <p className="mt-4 text-lg text-gray-400">Let’s talk — your next big idea could start today.</p>
         <Link
