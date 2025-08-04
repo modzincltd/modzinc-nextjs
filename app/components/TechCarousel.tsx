@@ -2,7 +2,7 @@
 
 import { FaReact } from 'react-icons/fa'
 import { SiNextdotjs, SiTailwindcss, SiMedusa, SiGoogleads, SiHtml5, SiCss3, SiSequelize, SiStripe, SiMagento, SiWordpress, SiShopify, SiPayloadcms
-    ,SiJavascript, SiTypescript, SiRedux, SiMysql, SiPostgresql, SiDocker, SiKubernetes, SiGraphql, SiApollo, SiVercel, SiNetlify, SiAmazonaws, SiAzure, SiGooglecloud
+    ,SiJavascript, SiTypescript, SiRedux, SiMysql, SiPostgresql, SiDocker
 } from 'react-icons/si'
 import { useEffect, useRef } from 'react'
 
