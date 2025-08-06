@@ -5,10 +5,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import TechCarousel from './components/TechCarousel'
 import ClientLogos from './components/ClientLogos'
+import NavBar from './components/NavBar'
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-white text-gray-800">
+      <NavBar />
       {/* Hero */}
       <section className="relative bg-gray-950 text-white py-32 px-6 text-center overflow-hidden">
       {/* Animated Background Shapes */}
