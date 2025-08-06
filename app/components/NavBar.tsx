@@ -25,7 +25,7 @@ const NavBar = () => {
     <hr class="mt-4 w-full lg:hidden" />
     <div class="my-4 flex items-center space-x-6 space-y-2 lg:my-0 lg:ml-auto lg:space-x-8 lg:space-y-0">
 
-      <a href="#" title="" class="whitespace-nowrap rounded-xl bg-red-700 px-5 py-3 font-medium text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2 hover:bg-blue-600">0151 440 2730</a>
+      <a href="tel:01514402730" title="" class="whitespace-nowrap rounded-xl bg-red-700 px-5 py-3 font-medium text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2 hover:bg-blue-600">0151 440 2730</a>
     </div>
   </nav>
 </header>
