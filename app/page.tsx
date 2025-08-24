@@ -77,15 +77,14 @@ export default function HomePage() {
 
       {/* CTA */}
       <section className="bg-gray-900 text-white py-20 text-center px-6">
-
-        
         <h2 className="text-3xl font-bold">Ready to Build Something Smart?</h2>
-        <p className="mt-4 text-lg text-gray-400">Let’s talk — your next big idea could start today.</p>
+        <p className="mt-4 text-lg text-gray-400">Let's talk — your next big idea could start today.</p>
         <Link
           href="mailto:barry@modzinc.com"
-          className="inline-block mt-6 bg-white text-gray-900 font-semibold px-6 py-3 rounded-full hover:bg-gray-200"
+          className="inline-block mt-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-3 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-200"
         >
-          Contact Us</Link>
+          Start Your Project
+        </Link>
       </section>
     </main>
   )
