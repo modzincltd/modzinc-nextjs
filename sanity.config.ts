@@ -7,8 +7,10 @@ export default defineConfig({
   name: 'default',
   title: 'ModZinc Portfolio',
 
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'placeholder-project-id',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+
+  basePath: '/studio',
 
   plugins: [deskTool(), visionTool()],
 

@@ -110,30 +110,38 @@ export const getFeaturedTestimonials = async () => {
 
 // Client queries
 export const getAllClients = async () => {
-  const query = `*[_type == "client" && active == true] | order(order asc) {
+  const query = `*[_type == "client"] | order(order asc) {
     _id,
     name,
+    company,
     logo,
+    logoWhite,
+    industry,
+    location,
     website,
     description,
+    services,
     featured,
-    order,
-    active
+    order
   }`
   
   return await sanityClient.fetch(query)
 }
 
 export const getFeaturedClients = async () => {
-  const query = `*[_type == "client" && active == true && featured == true] | order(order asc) {
+  const query = `*[_type == "client" && featured == true] | order(order asc) {
     _id,
     name,
+    company,
     logo,
+    logoWhite,
+    industry,
+    location,
     website,
     description,
+    services,
     featured,
-    order,
-    active
+    order
   }`
   
   return await sanityClient.fetch(query)

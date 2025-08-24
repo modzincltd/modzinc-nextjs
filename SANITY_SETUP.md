@@ -1,118 +1,214 @@
-# Sanity CMS Setup for ModZinc Portfolio
+# Sanity CMS Setup Guide
 
-## Initial Setup
+## Overview
+This project uses Sanity CMS for content management, including portfolio projects, client testimonials, blog posts, and additional pages.
 
-1. **Create a Sanity Project**
-   ```bash
-   npx sanity@latest init
-   ```
-   - Choose "Create new project"
-   - Name it "modzinc-portfolio" or similar
-   - Choose "Clean project with no predefined schemas"
-   - Select your preferred dataset (production)
+## Setup Instructions
 
-2. **Configure Environment Variables**
-   Create a `.env.local` file in your project root:
-   ```env
-   NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
-   NEXT_PUBLIC_SANITY_DATASET=production
-   SANITY_API_TOKEN=your-api-token
-   ```
+### 1. Create a Sanity Project
 
-3. **Get Your Project ID**
-   - Go to [sanity.io/manage](https://sanity.io/manage)
-   - Select your project
-   - Copy the Project ID from the project settings
+1. Go to [sanity.io](https://sanity.io) and create an account
+2. Create a new project
+3. Note down your Project ID
 
-4. **Get API Token (Optional)**
-   - In your Sanity project dashboard
-   - Go to API section
-   - Create a new token with appropriate permissions
+### 2. Environment Variables
 
-## Available Content Types
+Create a `.env.local` file in your project root with the following variables:
+
+```env
+# Sanity Configuration
+NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_TOKEN=your-api-token
+
+# Optional: For development
+NEXT_PUBLIC_SANITY_USE_CDN=false
+```
+
+### 3. Get Your API Token
+
+1. Go to your Sanity project dashboard
+2. Navigate to API section
+3. Create a new token with read permissions
+4. Add it to your `.env.local` file
+
+### 4. Install Dependencies
+
+The required dependencies are already installed:
+- `@sanity/client`
+- `@sanity/image-url`
+- `@sanity/vision`
+- `next-sanity`
+
+### 5. Access Sanity Studio
+
+Once your environment variables are set up, you can access the Sanity Studio at:
+```
+http://localhost:3000/studio
+```
+
+## Content Types
 
 ### Projects
-- Title, description, images
-- Technologies used
-- Client information
-- Project URLs (live site, GitHub)
-- Featured flag and display order
-
-### Services
-- Service title and description
-- Icon name
-- Features list
-- Technologies used
-- Active/inactive status
+- **Title**: Project name
+- **Slug**: URL-friendly identifier
+- **Description**: Project overview
+- **Main Image**: Featured project image
+- **Additional Images**: Gallery of project screenshots
+- **Technologies**: Array of technologies used
+- **Client**: Client name
+- **Project URL**: Live project link
+- **GitHub URL**: Source code link
+- **Featured**: Mark as featured project
+- **Order**: Display order
 
 ### Testimonials
-- Client name and company
-- Client image
-- Testimonial content
-- Rating (1-5 stars)
-- Related project reference
-- Featured flag
+- **Client Name**: Customer name
+- **Client Company**: Company name
+- **Client Image**: Customer photo
+- **Content**: Testimonial text
+- **Rating**: 1-5 star rating
+- **Related Project**: Link to associated project
+- **Featured**: Mark as featured testimonial
+- **Order**: Display order
 
 ### Clients
-- Client name and logo
-- Website URL
-- Description
-- Featured flag and display order
+- **Name**: Client name
+- **Company**: Company name
+- **Logo**: Company logo (regular and white versions)
+- **Industry**: Business industry
+- **Location**: Geographic location
+- **Website**: Company website
+- **Description**: Client description
+- **Services**: Array of services provided
+- **Featured**: Mark as featured client
+- **Order**: Display order
+- **Testimonials**: Related testimonials
+- **Projects**: Related projects
 
-## Usage
+### Pages
+- **Title**: Page title
+- **Slug**: URL-friendly identifier
+- **Meta Description**: SEO description
+- **Hero Section**: Hero content with heading, subheading, background image, and CTA
+- **Content**: Rich text content with images and custom blocks
+- **SEO Settings**: SEO title, description, keywords, and Open Graph image
 
-### Access Sanity Studio
-```bash
-npm run studio
-```
-Then visit: http://localhost:3333/studio
+### Blog Posts
+- **Title**: Post title
+- **Slug**: URL-friendly identifier
+- **Excerpt**: Short description
+- **Author**: Post author
+- **Main Image**: Featured image
+- **Categories**: Post categories
+- **Tags**: Post tags
+- **Content**: Rich text content with images and code blocks
+- **Featured**: Mark as featured post
+- **SEO Settings**: SEO optimization
+- **Published At**: Publication date
 
-### Deploy Studio (Optional)
-```bash
-npm run sanity:deploy
-```
+### Services
+- **Title**: Service name
+- **Description**: Service description
+- **Icon**: Service icon
+- **Features**: Array of service features
+- **Featured**: Mark as featured service
+- **Order**: Display order
 
-### Fetch Data in Components
+## Usage Examples
+
+### Fetching Projects
 ```typescript
-import { getAllProjects, getFeaturedProjects } from '@/lib/queries'
+import { sanityClient, queries } from '@/lib/sanity'
 
-// In your component
-const projects = await getAllProjects()
-const featuredProjects = await getFeaturedProjects()
+// Get all projects
+const projects = await sanityClient.fetch(queries.projects)
+
+// Get featured projects
+const featuredProjects = await sanityClient.fetch(queries.featuredProjects)
+
+// Get project by slug
+const project = await sanityClient.fetch(queries.projectBySlug, { slug: 'project-slug' })
 ```
 
-## Next Steps
+### Fetching Testimonials
+```typescript
+// Get all testimonials
+const testimonials = await sanityClient.fetch(queries.testimonials)
 
-1. Add your first projects, services, and testimonials through the Sanity Studio
-2. Update your components to use Sanity data instead of hardcoded content
-3. Add image optimization using the `urlFor` function from `lib/sanity.ts`
-4. Consider adding more content types as needed (blog posts, team members, etc.)
+// Get featured testimonials
+const featuredTestimonials = await sanityClient.fetch(queries.featuredTestimonials)
+```
 
-## Useful Queries
+### Fetching Clients
+```typescript
+// Get all clients
+const clients = await sanityClient.fetch(queries.clients)
 
-The `lib/queries.ts` file contains pre-built queries for:
-- Getting all projects (ordered by display order)
-- Getting featured projects only
-- Getting projects by slug
-- Getting all services
-- Getting all testimonials
-- Getting featured testimonials
-- Getting all clients
-- Getting featured clients
+// Get featured clients
+const featuredClients = await sanityClient.fetch(queries.featuredClients)
+```
+
+### Fetching Blog Posts
+```typescript
+// Get all blog posts
+const blogPosts = await sanityClient.fetch(queries.blogPosts)
+
+// Get featured blog posts
+const featuredBlogPosts = await sanityClient.fetch(queries.featuredBlogPosts)
+
+// Get blog post by slug
+const blogPost = await sanityClient.fetch(queries.blogPostBySlug, { slug: 'post-slug' })
+```
+
+### Fetching Pages
+```typescript
+// Get all pages
+const pages = await sanityClient.fetch(queries.pages)
+
+// Get page by slug
+const page = await sanityClient.fetch(queries.pageBySlug, { slug: 'page-slug' })
+```
 
 ## Image Handling
 
-Use the `urlFor` function to optimize images:
+Use the `urlFor` function to generate optimized image URLs:
+
 ```typescript
 import { urlFor } from '@/lib/sanity'
 
-// In your component
-<Image 
-  src={urlFor(project.mainImage).url()} 
-  alt={project.title}
-  width={600}
-  height={400}
-/>
+// Generate image URL
+const imageUrl = urlFor(image).width(800).height(600).url()
 ```
+
+## Development Workflow
+
+1. **Start Development Server**:
+   ```bash
+   npm run dev
+   ```
+
+2. **Access Sanity Studio**:
+   ```
+   http://localhost:3000/studio
+   ```
+
+3. **Create Content**: Use the studio to create and manage your content
+
+4. **Fetch Content**: Use the provided queries to fetch content in your components
+
+## Deployment
+
+1. **Environment Variables**: Make sure to set up environment variables in your deployment platform
+2. **Build**: The Sanity Studio will be included in your build
+3. **Access**: Studio will be available at `/studio` on your deployed site
+
+## Tips
+
+- Use the Vision tool in Sanity Studio to test GROQ queries
+- Set up webhooks for real-time content updates
+- Use the `featured` field to highlight important content
+- Use the `order` field to control content display order
+- Leverage the SEO fields for better search engine optimization
 
 

@@ -1,84 +1,190 @@
-import Link from 'next/link'
+'use client'
 
-export default function Footer() {
+import Link from 'next/link'
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaGithub } from 'react-icons/fa'
+import { motion } from 'framer-motion'
+
+const Footer = () => {
+  const currentYear = new Date().getFullYear()
+
+  const footerLinks = {
+    services: [
+      { name: 'Web Development', href: '#services' },
+      { name: 'E-commerce Solutions', href: '#services' },
+      { name: 'Custom Applications', href: '#services' },
+      { name: 'Digital Marketing', href: '#services' },
+      { name: 'UI/UX Design', href: '#services' }
+    ],
+    company: [
+      { name: 'About Us', href: '#about' },
+      { name: 'Our Work', href: '#portfolio' },
+      { name: 'Testimonials', href: '#testimonials' },
+      { name: 'Careers', href: '#careers' },
+      { name: 'Blog', href: '#blog' }
+    ],
+    support: [
+      { name: 'Contact Us', href: '#contact' },
+      { name: 'Support', href: '#support' },
+      { name: 'Documentation', href: '#docs' },
+      { name: 'Privacy Policy', href: '#privacy' },
+      { name: 'Terms of Service', href: '#terms' }
+    ]
+  }
+
+  const socialLinks = [
+    { name: 'Facebook', icon: <FaFacebook size={20} />, href: 'https://facebook.com' },
+    { name: 'Twitter', icon: <FaTwitter size={20} />, href: 'https://twitter.com' },
+    { name: 'LinkedIn', icon: <FaLinkedin size={20} />, href: 'https://linkedin.com' },
+    { name: 'Instagram', icon: <FaInstagram size={20} />, href: 'https://instagram.com' },
+    { name: 'GitHub', icon: <FaGithub size={20} />, href: 'https://github.com' }
+  ]
+
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 text-white">
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">M</span>
+          <div className="lg:col-span-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                  <span className="text-white font-bold text-xl">M</span>
+                </div>
+                <div>
+                  <span className="text-2xl font-bold">MODZINC</span>
+                  <div className="text-sm text-gray-300">Web Development Agency</div>
+                </div>
               </div>
-              <span className="text-xl font-bold">ModZinc</span>
-            </div>
-            <p className="text-gray-400 mb-4 max-w-md">
-              WEBS / APPS / SOFTWARE — From Liverpool with Code. We build fast, scalable solutions for web, e-commerce and business automation.
-            </p>
-            <div className="flex space-x-4">
-              <a href="mailto:barry@modzinc.com" className="text-gray-400 hover:text-white transition-colors">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                </svg>
-              </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clipRule="evenodd" />
-                </svg>
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clipRule="evenodd" />
-                </svg>
-              </a>
-            </div>
+              
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                Northwest England's premier web development agency. We create cutting-edge digital solutions 
+                that drive real business results for companies across the region.
+              </p>
+              
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <FaMapMarkerAlt className="text-blue-400" />
+                  <span className="text-gray-300">Liverpool, Northwest England</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <FaPhone className="text-blue-400" />
+                  <span className="text-gray-300">0151 440 2730</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <FaEnvelope className="text-blue-400" />
+                  <span className="text-gray-300">barry@modzinc.com</span>
+                </div>
+              </div>
+            </motion.div>
           </div>
 
           {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li><Link href="/services" className="hover:text-white transition-colors">Web Development</Link></li>
-              <li><Link href="/services" className="hover:text-white transition-colors">Mobile Apps</Link></li>
-              <li><Link href="/services" className="hover:text-white transition-colors">E-commerce</Link></li>
-              <li><Link href="/services" className="hover:text-white transition-colors">Business Automation</Link></li>
-              <li><Link href="/services" className="hover:text-white transition-colors">API Integration</Link></li>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-lg font-semibold mb-6">Services</h3>
+            <ul className="space-y-3">
+              {footerLinks.services.map((link, index) => (
+                <li key={index}>
+                  <Link 
+                    href={link.href}
+                    className="text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
-          {/* Contact */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <a href="mailto:barry@modzinc.com" className="hover:text-white transition-colors">
-                  barry@modzinc.com
-                </a>
-              </li>
-              <li>Liverpool, UK</li>
-              <li>Available for remote work</li>
+          {/* Company */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-lg font-semibold mb-6">Company</h3>
+            <ul className="space-y-3">
+              {footerLinks.company.map((link, index) => (
+                <li key={index}>
+                  <Link 
+                    href={link.href}
+                    className="text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
+
+          {/* Support */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-lg font-semibold mb-6">Support</h3>
+            <ul className="space-y-3">
+              {footerLinks.support.map((link, index) => (
+                <li key={index}>
+                  <Link 
+                    href={link.href}
+                    className="text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
-            © 2024 ModZinc. All rights reserved.
-          </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Terms of Service
-            </Link>
+        {/* Bottom Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="border-t border-gray-700 mt-12 pt-8"
+        >
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="text-gray-400 text-sm">
+              © {currentYear} Modzinc. All rights reserved. | Northwest England's Premier Web Agency
+            </div>
+            
+            <div className="flex space-x-4">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-blue-400 hover:bg-white/20 transition-all duration-300"
+                  title={social.name}
+                >
+                  {social.icon}
+                </motion.a>
+              ))}
+            </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   )
 }
+
+export default Footer
 

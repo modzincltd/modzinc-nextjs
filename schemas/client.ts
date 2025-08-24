@@ -10,13 +10,35 @@ export default {
       validation: (Rule: any) => Rule.required(),
     },
     {
+      name: 'company',
+      title: 'Company Name',
+      type: 'string',
+    },
+    {
       name: 'logo',
-      title: 'Client Logo',
+      title: 'Company Logo',
       type: 'image',
       options: {
         hotspot: true,
       },
-      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'logoWhite',
+      title: 'Company Logo (White Version)',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: 'industry',
+      title: 'Industry',
+      type: 'string',
+    },
+    {
+      name: 'location',
+      title: 'Location',
+      type: 'string',
     },
     {
       name: 'website',
@@ -25,8 +47,25 @@ export default {
     },
     {
       name: 'description',
-      title: 'Description',
+      title: 'Client Description',
       type: 'text',
+      rows: 3,
+    },
+    {
+      name: 'services',
+      title: 'Services Provided',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          'Web Development',
+          'E-commerce',
+          'UI/UX Design',
+          'Digital Marketing',
+          'Custom Applications',
+          'Consulting',
+        ],
+      },
     },
     {
       name: 'featured',
@@ -41,26 +80,30 @@ export default {
       initialValue: 0,
     },
     {
-      name: 'active',
-      title: 'Active Client',
-      type: 'boolean',
-      initialValue: true,
+      name: 'testimonials',
+      title: 'Client Testimonials',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'testimonial' }] }],
+    },
+    {
+      name: 'projects',
+      title: 'Client Projects',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'project' }] }],
     },
   ],
   preview: {
     select: {
       title: 'name',
+      subtitle: 'company',
       media: 'logo',
       featured: 'featured',
-      active: 'active',
     },
     prepare(selection: any) {
-      const { title, media, featured, active } = selection
-      let displayTitle = title
-      if (!active) displayTitle = `[INACTIVE] ${title}`
-      if (featured) displayTitle = `⭐ ${displayTitle}`
+      const { title, subtitle, media, featured } = selection
       return {
-        title: displayTitle,
+        title: featured ? `⭐ ${title}` : title,
+        subtitle,
         media,
       }
     },
